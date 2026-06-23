@@ -1,0 +1,336 @@
+body {
+  background-color: #F5F5F5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+:root {
+  --bg-color: #F5F5F5;
+  --text-color: #333333;
+  --icon-btn-bg: #f0f0f0;
+  --icon-color: #555555;
+}
+body.dark-theme {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --icon-btn-bg: #2a2a2a;
+  --icon-color: #f1c40f;
+}
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+.sakura123 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 900;
+  overflow: hidden;
+}
+.main {
+  background-color: #1a1a1a;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+  min-height: 100vh;
+  width: 100%;
+}
+.personal-introduction {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 53.33333333vw;
+  height: 26.66666667vw;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  transition: transform 0.4s ease;
+  border-radius: 0.8vw;
+}
+.personal-introduction:hover {
+  transform: translate(-50%, -50%) scale(1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+.personal-introduction .pic {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 30%;
+}
+.personal-introduction .pic img {
+  margin-bottom: 4vw;
+  margin-left: 1.33333333vw;
+  width: 80%;
+  height: auto;
+  display: block;
+}
+.personal-introduction .list {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 70%;
+}
+.personal-introduction .list ul li {
+  opacity: 0;
+  animation: fadeUpIn 0.8s ease forwards;
+  margin-bottom: 0.96vw;
+  font-size: 1.33333333vw;
+  font-family: 'JetBrains Mono';
+  color: aliceblue;
+}
+.personal-introduction .list ul li:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.personal-introduction .list ul li:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.personal-introduction .list ul li:nth-child(3) {
+  animation-delay: 0.5s;
+}
+.personal-introduction .list ul li:nth-child(4) {
+  animation-delay: 0.7s;
+}
+.personal-introduction .list ul li:nth-child(5) {
+  animation-delay: 0.9s;
+}
+.personal-introduction .link {
+  position: absolute;
+  bottom: 0.66666667vw;
+  width: 100%;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2.66666667vw;
+}
+.personal-introduction .link a {
+  display: block;
+  text-decoration: none;
+}
+.personal-introduction .link a i {
+  display: inline-block;
+  font-size: 2vw;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.personal-introduction .link a i.ri-bilibili-line {
+  color: #fb7299;
+}
+.personal-introduction .link a i.ri-youtube-line {
+  color: #ff0000;
+}
+.personal-introduction .link a i.ri-twitter-x-line {
+  color: #000000;
+}
+.personal-introduction .link a i.ri-github-line {
+  color: #ffffff;
+}
+.personal-introduction .link a i.ri-qq-line {
+  color: #12b7f5;
+}
+.personal-introduction .link a i.ri-mail-line {
+  color: #fbbc05;
+}
+.personal-introduction .link a i.ri-telegram-line {
+  color: #26a5e4;
+}
+.personal-introduction .link a i.ri-reddit-line {
+  color: #ff4500;
+}
+.personal-introduction .link a i.ri-discord-line {
+  color: #5865f2;
+}
+.personal-introduction .link a:hover i {
+  transform: translateY(-7px) scale(1.1);
+}
+@keyframes fadeUpIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.upper {
+  position: fixed;
+  font-size: 2.66666667vw;
+  bottom: 1.33333333vw;
+  right: 1.33333333vw;
+  z-index: 999;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.upper:hover {
+  color: #d87cb6;
+  transform: scale(1.1);
+}
+.upper.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.maintopic {
+  margin: 0 auto;
+}
+.maintopic .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2.13333333vw 21.33333333vw;
+}
+.maintopic .title h2 {
+  font-size: 1.2vw;
+  font-weight: 700;
+  font-family: 'JetBrains Mono';
+}
+.maintopic .title .box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4vw;
+  height: 2.13333333vw;
+  background-color: #d87cb6;
+  border-radius: 0.53333333vw;
+  transition: all 0.3s ease;
+}
+.maintopic .title .box a {
+  display: inline-block;
+  font-size: 0.8vw;
+  text-decoration: none;
+  font-family: 'JetBrains Mono';
+  color: #fff;
+}
+.maintopic .title .box:hover {
+  transform: scale(1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+.maintopic .text ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 21.33333333vw;
+  flex-wrap: wrap;
+}
+.maintopic .text ul li {
+  width: 48%;
+  border-radius: 1.06666667vw;
+  margin-bottom: 1.06666667vw;
+  padding: 1.33333333vw;
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.maintopic .text ul li:hover {
+  transform: scale(1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+.maintopic .text ul li .video {
+  width: 100%;
+  height: 13.33333333vw;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+.maintopic .text ul li .video .package,
+.maintopic .text ul li .video .mg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+.maintopic .text ul li .video .mg {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.maintopic .text ul li .video:hover .mg {
+  opacity: 1;
+}
+.maintopic .text ul li .info {
+  width: 100%;
+  margin-top: 1.33333333vw;
+}
+.maintopic .text ul li .info .desc {
+  font-size: 1.06666667vw;
+  color: #777;
+  margin-bottom: 0.8vw;
+  line-height: 1.5;
+}
+.maintopic .text ul li .info .data {
+  font-size: 0.8vw;
+  color: #999;
+  display: flex;
+  gap: 1.33333333vw;
+}
+.maintopic .text ul li .project {
+  width: 100%;
+  height: 1.86666667vw;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  justify-content: space-between;
+}
+.maintopic .text ul li .project .language {
+  font-size: 1.06666667vw;
+  color: #dea584;
+}
+.maintopic .text ul li .project .language2 {
+  font-size: 1.06666667vw;
+}
+.maintopic .text ul li .project .name {
+  font-size: 1.33333333vw;
+  font-weight: 700;
+}
+.maintopic .text ul li .info2 {
+  width: 100%;
+  margin-top: 0.53333333vw;
+}
+.maintopic .text ul li .info2 .desc2 {
+  font-size: 0.85333333vw;
+  color: #777;
+  margin-bottom: 0.8vw;
+  line-height: 1.5;
+}
+.maintopic .text ul li .info2 .data2 {
+  font-size: 0.8vw;
+  color: #999;
+  display: flex;
+  gap: 1.33333333vw;
+}
+.maintopic .text ul li .info2 .data2:nth-child(2) {
+  color: #57606a;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FFB7C5;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: #fdf5f7;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF90AF;
+}
+::selection {
+  background-color: #FFB7C5;
+  color: #FFFFFF;
+}
+.sk {
+  width: fit-content;
+  height: fit-content;
+  position: fixed;
+  -webkit-user-select: none;
+  user-select: none;
+  bottom: 5.33333333vw;
+  right: 1.33333333vw;
+}

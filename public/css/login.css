@@ -1,0 +1,45 @@
+body {
+  font-family: 'JetBrains Mono';
+  background-color: #FFB7C5;
+  display: flex;
+  justify-content: center;
+  margin-top: 11.2vw;
+}
+.auth-container {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 1.33333333vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.auth-container img {
+  display: block;
+  width: 5.86666667vw;
+  height: 5.86666667vw;
+  padding-top: 1.33333333vw;
+}
+.panel {
+  padding: 0vw 2.66666667vw 2.66666667vw 2.66666667vw;
+  box-shadow: 0 1.06666667vw 2.13333333vw rgba(255, 137, 161, 0.3);
+  width: 15.2vw;
+  text-align: center;
+}
+input {
+  display: block;
+  width: 80%;
+  margin: 1.33333333vw auto;
+  padding: 0.53333333vw;
+}
+button {
+  padding: 0.66666667vw 1.33333333vw;
+  cursor: pointer;
+  background: #d87cb6;
+  color: #fff;
+  border: none;
+  border-radius: 0.8vw;
+}
+a {
+  color: blue;
+  cursor: pointer;
+  text-decoration: none;
+}

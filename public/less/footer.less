@@ -1,0 +1,32 @@
+// out: ../css/
+@import "./variable.less";
+.footer{ 
+    margin: (15/@base*1vw) 0 auto;
+    width: 100%;
+    height: (25/@base*1vw);
+    display: flex;
+    justify-content: space-between;
+    background-color: #FFB7C5;
+    .left{
+        margin-left:(80/@base*1vw);
+        font-size: (3.5/@base*1vw);
+        color: @navcolor;
+        p{
+            margin-top:(2.5/@base*1vw) ;
+            a{
+                display: inline-block;
+                color: @navcolor;
+            }
+            
+        }
+    }
+    .right{
+        margin-top: (5/@base*1vw);
+        margin-right:(80/@base*1vw);
+        font-size: (3.5/@base*1vw);
+        color: @navcolor ;
+        a{
+        color: @navcolor ;
+        }
+    }
+}

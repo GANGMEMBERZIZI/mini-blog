@@ -1,0 +1,136 @@
+// out: ../css/
+@import "./variable.less";
+.header {
+    margin: 0 auto;
+    display: flex;
+    border-radius: (3/@base*1vw);
+    width: 100%;
+    height: (15/@base*1vw);
+    text-align: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    .logo a{
+        display: block;
+        font-family: 'JetBrains Mono';
+        margin-left:(4.5/@base*1vw);
+        font-size: (6/@base*1vw); 
+        color: #ffffff;
+        transition: color 0.5s;
+        text-shadow: 
+        0 0 (5 / @base * 1vw) rgba(255, 105, 180, 0.9), 
+        0 0 (15 / @base * 1vw) rgba(255, 105, 180, 0.6),
+        0 0 (30 / @base * 1vw) rgba(255, 105, 180, 0.4);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .logo a:hover{
+        color:@logocolor;
+    }
+    .nav{
+        position: absolute;
+        display: flex;
+        left: 40%;
+        align-items: center;
+        gap: (8/@base*1vw);
+    }
+    .nav .nav-item{
+        position: relative;
+        .hidden{
+            position: absolute;
+            backdrop-filter: blur(4px);
+            border-radius: (2/@base*1vw);
+            margin-top: (4.87/@base*1vw);
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.28);
+            padding: (2/@base*1vw) 0;
+            min-width: (18/@base*1vw);
+            transition: all 0.7s ease;
+            opacity: 0;
+            visibility:hidden;
+            &::before {
+            content: '';
+            position: absolute;
+            top: -(4.87/@base*1vw);
+            left: 0;
+            width: 100%;
+            height: (4.87/@base*1vw);
+            background: transparent;
+        }
+        }
+        .hidden a{
+            margin:(1.5/@base*1vw) 0;
+        }
+    }
+    .nav-item:hover .hidden{
+            opacity: 1;
+            visibility: visible;
+        }
+    .nav a{
+        font-size: (3.5/@base*1vw);
+        margin: 0;
+        display: block;
+        transition: color 0.5s;
+        color: @navcolor;
+    }
+    .nav a:hover{
+        color: @hovercolor;
+    }
+    .action{
+        display: flex;
+        flex:1;
+        align-items: center;
+        justify-content: flex-end;
+        font-size: (6/@base*1vw);
+        padding-right: (4/ @base * 1vw);
+        gap: (10 / @base * 1vw);
+        .search-box{
+            display: flex;
+            align-items: center;
+            padding: (2 / @base * 1vw) (5 / @base * 1vw);
+            font-size: (4/@base*1vw);
+            .logout-btn {
+                background: transparent; /* 剥离默认灰色背景，使其透明 */
+                border: none;            /* 剥离默认的 3D 边框 */
+                outline: none;
+                margin-right: (4 / @base * 1vw);
+                transition: all 0.4s ease;
+                .ri-logout-box-r-line{
+                    font-size: (5/@base*1vw);
+                }
+                &:hover{
+                color: @hovercolor; 
+                transform: scale(1.1);
+                }
+            }
+            .search-input{
+                background-color: rgba(255, 255, 255, 0);
+                border: none;
+                outline: none;
+                width: (50 / @base * 1vw);
+                transition: width 0.4s ease;
+                font-family: 'JetBrains Mono', sans-serif;
+                font-size: (4/@base*1vw);
+                cursor: pointer;
+                &::-webkit-search-cancel-button {
+                    -webkit-appearance: none; 
+                    display: none;            
+                }
+            }
+        }
+        .icon-btn{
+            transition: all 0.4s ease;
+            text-decoration: none;
+            text-shadow: 0 0 (5 / @base * 1vw) rgba(255, 105, 180, 0.6);
+            &:hover {
+                color: @hovercolor; 
+                transform: scale(1.1);
+            }
+        }
+    }
+}

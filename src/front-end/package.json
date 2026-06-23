@@ -1,0 +1,29 @@
+{
+  "name": "personal-web",
+  "version": "1.0.0",
+  "description": "![演示截图](./1.jpg)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GANGMEMBERZIZI/mini-blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/GANGMEMBERZIZI/mini-blog/issues"
+  },
+  "homepage": "https://github.com/GANGMEMBERZIZI/mini-blog#readme",
+  "dependencies": {
+    "cookie-session": "^2.1.1",
+    "undici": "^7.27.2"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16"
+  }
+}

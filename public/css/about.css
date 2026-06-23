@@ -1,0 +1,128 @@
+.mainme {
+  margin: 0 auto;
+}
+.mainme .mysaying {
+  background-color: #fff;
+  margin: 2.66666667vw 21.33333333vw;
+  padding: 1.86666667vw 1.86666667vw;
+  border-radius: 1.33333333vw;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+.mainme .mysaying h2 {
+  font-family: 'JetBrains Mono';
+  font-weight: bold;
+  font-size: 1.33333333vw;
+  color: #FFB7C5;
+}
+.mainme .mysaying .p {
+  color: red;
+  margin-top: 0.53333333vw;
+  font-size: 1.06666667vw;
+  line-height: 2.66666667vw;
+}
+.mainme .mysaying .p a {
+  color: red;
+}
+.mainme .mysaying ul {
+  font-size: 1.06666667vw;
+  line-height: 2.66666667vw;
+}
+.mainme .mysaying .email {
+  margin-top: 0.8vw;
+}
+.comment {
+  margin: 0 auto;
+}
+.comment .title {
+  margin: 2.66666667vw 21.33333333vw;
+}
+.comment .title h2 {
+  font-family: 'JetBrains Mono';
+  font-weight: bold;
+}
+.comment .placeholder-box {
+  margin: 2.66666667vw 21.33333333vw;
+  background-color: #fff;
+  border-radius: 0.8vw;
+  padding: 2.66666667vw 0;
+  height: 10.66666667vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.06666667vw;
+}
+.comment .placeholder-box p {
+  color: #666;
+  font-size: 1.06666667vw;
+  margin: 0;
+}
+.comment .placeholder-box button {
+  background-color: #d977b6;
+  color: white;
+  border: none;
+  border-radius: 1.6vw;
+  padding: 0.8vw 1.6vw;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+.comment .placeholder-box button:hover {
+  background-color: #c466a3;
+}
+.comment .real-input-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 2.66666667vw 21.33333333vw;
+  gap: 1.06666667vw;
+}
+.comment .real-input-box textarea {
+  width: 100%;
+  font-size: 1.06666667vw;
+  height: 10.66666667vw;
+  padding: 1.33333333vw;
+  border: 1px solid #ccc;
+  border-radius: 0.8vw;
+  resize: none;
+}
+.comment .real-input-box button {
+  background-color: #FFB7C5;
+  color: white;
+  border: none;
+  padding: 0.8vw 1.6vw;
+  border-radius: 1.6vw;
+  cursor: pointer;
+}
+.comment .thecomments {
+  margin: 2.66666667vw 21.33333333vw;
+}
+.comment .thecomments .totalcomments {
+  font-family: 'JetBrains Mono';
+  font-weight: bold;
+  color: #FFB7C5;
+  margin-bottom: 1.33333333vw;
+}
+.comment .thecomments .commentcontent {
+  margin-bottom: 1.33333333vw;
+}
+.comment .thecomments .comment-item {
+  margin-bottom: 1.33333333vw;
+}
+.comment .thecomments .comment-item .comment-header {
+  font-size: 1.06666667vw;
+  color: #d87cb6;
+}
+.comment .thecomments .comment-item .comment-body {
+  margin: 0.66666667vw 0;
+  font-size: 1.06666667vw;
+  color: #d87cb6;
+}
+.comment .thecomments .comment-item button {
+  background-color: #FFB7C5;
+  color: #F5F5F5;
+  border: none;
+  padding: 0.26666667vw 0.26666667vw;
+  border-radius: 0.26666667vw;
+  cursor: pointer;
+}

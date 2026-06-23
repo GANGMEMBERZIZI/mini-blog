@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="title.png" type="image/png">
+    <title>admin</title>
+    <style>
+        body { background-color: #1e1e1e; color: #00ff00; font-family: monospace; padding: 20px; display: flex; gap: 20px; justify-content: center; }
+        .container1 { width: 450px; height:484px ; border: 1px solid #0088ff; padding: 20px; border-radius: 8px; background: #111; box-sizing: border-box; }
+        .container { width: 450px; border: 1px solid #0088ff; padding: 20px; border-radius: 8px; background: #111; box-sizing: border-box; }
+        label { display: block; margin: 10px 0 5px; color: #0088ff; }
+        input, textarea { width: 100%; padding: 8px; background: #222; border: 1px solid #444; color: #fff; box-sizing: border-box; font-family: monospace; }
+        button { width: 100%; padding: 10px; background: #0088ff; color: #fff; border: none; margin-top: 10px; cursor: pointer; }
+        button:hover { background: #0055aa; }
+        .article-link { padding: 10px; border-bottom: 1px dashed #333; cursor: pointer; color: #ffff00; }
+        .article-link:hover { background: #222; color: #ff00ff; }
+        #viewer-title { background: transparent; border: 1px dashed #555; font-size: 18px; font-weight: bold; color: #ffff00; margin-bottom: 5px; }
+        #viewer-title:focus { outline: none; border-color: #0088ff; }
+        #viewer-content { background: #000; border: 1px solid #666; padding: 15px; height: 250px; color: #fff; resize: vertical; }
+        #viewer-content:focus { outline: none; border-color: #0088ff; }
+    </style>
+</head>
+<body>
+
+    <div class="container1">
+        <h2>新文章</h2>
+        <label>文章标题：</label> <input type="text" id="title" placeholder="输入标题...">
+        <label>正文内容：</label> <textarea id="content" style="height:200px;" placeholder="输入正文..."></textarea>
+        <input type="password" id="admin-pwd" placeholder="请输入 Token ...">
+        <button id="submit-btn">上传</button>
+    </div>
+
+    <div class="container">
+        <h2>展示</h2>
+        <div id="list-box">正在扫描硬盘...</div>
+        
+        <h2 style="margin-top:30px; color:#ff00ff;">当前阅览 / 篡改</h2>
+        <input type="text" id="viewer-title" placeholder="请修改标题">
+        <textarea id="viewer-content" placeholder="点击上方列表的文章进行阅览或修改..."></textarea>
+        
+        <div id="viewer-actions" style="margin-top: 15px; display: none; gap: 10px;">
+            <button id="update-btn" style="background: #ffaa00; color: #000; font-weight: bold;">保存修改</button>
+            <button id="delete-btn" style="background: #ff0000; font-weight: bold;">彻底销毁</button>
+        </div>
+    </div>
+    
+    <script type="module" src="./js/admin.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+/* 赛博装甲的物理法则 */
+.ai-send-btn {
+  width: 2.13333333vw;
+  height: 2.13333333vw;
+  border-radius: 50%;
+  background-color: #93C5FD;
+  color: #111827;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.ai-send-btn:hover {
+  background-color: #60A5FA;
+}
+.ai-send-btn svg {
+  width: 1.33333333vw;
+  height: 1.33333333vw;
+}
+.chatTitle {
+  display: flex;
+  margin: 1.33333333vw 16vw;
+}
+.chatTitle h2 {
+  font-size: 1.86666667vw;
+  margin-right: 1.33333333vw;
+}
+.chatTitle .chattitle {
+  width: 2.85333333vw;
+  height: 2.85333333vw;
+}
+#chatbox {
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 1.6vw;
+  padding: 2.66666667vw;
+  margin-bottom: 0.8vw;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.input-area {
+  display: flex;
+  max-width: 70%;
+  margin: 0 auto;
+  align-items: center;
+  background: #ffffff;
+  padding: 0.53333333vw 0.53333333vw 0.53333333vw 1.33333333vw;
+  border-radius: 1.06666667vw;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  border: 0.13333333vw solid rgba(244, 114, 182, 0.2);
+}
+#chatInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  resize: none;
+  height: 2.13333333vw;
+  max-height: 8vw;
+  padding-top: 0.53333333vw;
+  overflow-y: auto;
+  font-size: 0.8vw;
+  color: #4b5563;
+  font-family: inherit;
+}
+#chatInput::-webkit-scrollbar {
+  width: 0.26666667vw;
+}
+#chatInput::-webkit-scrollbar-thumb {
+  background-color: rgba(244, 114, 182, 0.3);
+  border-radius: 0.26666667vw;
+}
+#chatInput::placeholder {
+  color: #9ca3af;
+}
+.ai-send-btn {
+  width: 1.86666667vw;
+  height: 1.86666667vw;
+  border-radius: 50%;
+  background-color: #fbcfe8;
+  color: #831843;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.ai-send-btn:hover {
+  background-color: #f9a8d4;
+  transform: scale(1.05);
+}
+.sena-msg {
+  align-self: flex-start;
+  font-size: 1.06666667vw;
+  margin-left: 5.33333333vw;
+  color: #4b5563;
+  font-weight: bold;
+  margin-top: 1.33333333vw;
+}
+.user-msg {
+  max-width: 50%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: pre-wrap;
+  align-self: flex-end;
+  font-size: 1.06666667vw;
+  margin-right: 5.33333333vw;
+  border-radius: 0.8vw;
+  padding: 0.53333333vw 0.8vw;
+  text-align: center;
+  background: #e0f2fe;
+  margin-top: 1.33333333vw;
+}

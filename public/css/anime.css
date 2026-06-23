@@ -1,0 +1,88 @@
+#container {
+  display: grid;
+  margin: 2.13333333vw 21.33333333vw;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1.6vw;
+}
+.bangumi-card {
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 1.06666667vw;
+  padding: 0.8vw;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+.bangumi-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+.bangumi-cover {
+  width: 6.4vw;
+  height: 8.53333333vw;
+  object-fit: cover;
+  border-radius: 0.53333333vw;
+  margin-right: 0.8vw;
+  flex-shrink: 0;
+}
+.bangumi-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.bangumi-title {
+  font-size: 1.06666667vw;
+  font-weight: bold;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bangumi-tags {
+  margin: 0.4vw 0;
+}
+.bangumi-tags .tag {
+  margin-right: 0.4vw;
+}
+.tag {
+  background-color: #f2e8f0;
+  color: #665566;
+  font-size: 0.61333333vw;
+  padding: 0.16vw 0.48vw;
+  border-radius: 0.26666667vw;
+}
+.bangumi-desc {
+  font-size: 0.66666667vw;
+  color: #888;
+  line-height: 1.5;
+  /* 极其硬核的多行截断法术：只显示 3 行，多余的变成省略号！ */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.bangumi-meta {
+  font-size: 0.61333333vw;
+  color: #aaa;
+  margin-top: 10px;
+}
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 2.66666667vw;
+  text-decoration: none;
+}
+.prev-page {
+  padding: 0.26666667vw 0.26666667vw;
+  cursor: pointer;
+}
+.page-info {
+  margin: 0 2.13333333vw;
+  font-weight: bold;
+  color: #555;
+}
+.next-page {
+  padding: 0.26666667vw 0.26666667vw;
+  cursor: pointer;
+}

@@ -1,0 +1,94 @@
+// out: ../css/
+@import "./variable.less";
+#container{
+    display: grid;
+    margin:(8/@base*1vw) (80/@base*1vw);
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: (6/@base*1vw); 
+}
+.bangumi-card {
+    display: flex; 
+    background-color: #ffffff;
+    border-radius: (4/@base*1vw); 
+    padding: (3/@base*1vw);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); 
+    transition: transform 0.2s; 
+}
+.bangumi-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+.bangumi-cover {
+    width: (24/@base*1vw); 
+    height: (32/@base*1vw);; 
+    object-fit: cover; 
+    border-radius: (2/@base*1vw);
+    margin-right: (3/@base*1vw); 
+    flex-shrink: 0; 
+}
+.bangumi-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    overflow: hidden; 
+}
+.bangumi-title {
+    font-size: (4/@base*1vw);
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bangumi-tags {
+    margin: (1.5/@base*1vw) 0;
+    .tag{
+        margin-right:(1.5/@base*1vw);
+    }
+}
+
+.tag {
+    background-color: #f2e8f0; 
+    color: #665566;
+    font-size: (2.3/@base*1vw);
+    padding: (0.6/@base*1vw) (1.8/@base*1vw);
+    border-radius: (1/@base*1vw);
+}
+
+.bangumi-desc {
+    font-size: (2.5/@base*1vw);
+    color: #888;
+    line-height: 1.5;
+    /* 极其硬核的多行截断法术：只显示 3 行，多余的变成省略号！ */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.bangumi-meta {
+    font-size: (2.3/@base*1vw);
+    color: #aaa;
+    margin-top: 10px;
+}
+.pagination-controls{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: (10/@base)*1vw;
+    text-decoration: none;
+}
+.prev-page{
+    padding: (1/@base)*1vw (1/@base)*1vw;
+    cursor: pointer;
+}
+.page-info{
+    margin: 0 (8/@base)*1vw;
+    font-weight: bold;
+    color: #555;
+}
+.next-page{
+    padding: (1/@base)*1vw (1/@base)*1vw;
+    cursor: pointer;
+}

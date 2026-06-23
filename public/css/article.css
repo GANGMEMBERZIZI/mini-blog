@@ -1,0 +1,54 @@
+.passagetitle {
+  font-size: 1.06666667vw;
+  text-align: center;
+  font-weight: 700;
+  font-family: 'JetBrains Mono';
+}
+.content {
+  width: 100%;
+  margin-top: 0.4vw;
+}
+.content p {
+  font-size: 0.93333333vw;
+  line-height: 0.8vw;
+}
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 2.66666667vw;
+  text-decoration: none;
+}
+.prev-page {
+  padding: 0.26666667vw 0.26666667vw;
+  cursor: pointer;
+}
+.page-info {
+  margin: 0 2.13333333vw;
+  font-weight: bold;
+  color: #555;
+}
+.next-page {
+  padding: 0.26666667vw 0.26666667vw;
+  cursor: pointer;
+}
+.fold {
+  margin-top: 1.33333333vw;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: #FFB7C5;
+  color: #F5F5F5;
+  padding: 0.53333333vw 0.8vw;
+  border-radius: 0.53333333vw;
+  border: none;
+}
+.unfold {
+  margin-top: 1.33333333vw;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: #FFB7C5;
+  color: #F5F5F5;
+  padding: 0.53333333vw 0.8vw;
+  border: none;
+  border-radius: 0.53333333vw;
+}

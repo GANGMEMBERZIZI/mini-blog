@@ -1,0 +1,123 @@
+// out: ../css/
+@import "./variable.less";
+/* 赛博装甲的物理法则 */
+.ai-send-btn {
+  width: (8/@base*1vw);             
+  height: (8/@base*1vw);               
+  border-radius: 50%;       
+  background-color: #93C5FD; 
+  color: #111827;            
+  border: none;             
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;          
+  transition: all 0.2s;     
+}
+.ai-send-btn:hover {
+  background-color: #60A5FA; 
+}
+.ai-send-btn svg {
+  width: (5/@base*1vw);
+  height: (5/@base*1vw);
+}
+.chatTitle{
+    display: flex;
+    margin:(5/@base*1vw) (60/@base*1vw);
+    h2{
+        font-size: (7/@base*1vw);
+        margin-right: (5/@base*1vw);
+    }
+    .chattitle{
+    width: (10.7/@base*1vw);
+    height: (10.7/@base*1vw);
+    }
+}
+#chatbox {
+    height: 100vh; 
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: (6/@base*1vw);
+    padding: (10/@base*1vw);
+    margin-bottom: (3/@base*1vw);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.input-area {
+    display: flex;
+    max-width: 70%;
+    margin: 0 auto;
+    align-items: center;
+    background: #ffffff; 
+    padding: (2/@base*1vw) (2/@base*1vw) (2/@base*1vw) (5/@base*1vw);
+    border-radius: (4/@base*1vw); 
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    border: (0.5/@base*1vw) solid rgba(244, 114, 182, 0.2); 
+}
+#chatInput {
+    flex: 1; 
+    border: none;
+    outline: none; 
+    background: transparent;
+    resize: none;
+    height: (8/@base*1vw); 
+    max-height: (30/@base*1vw);
+    padding-top: (2/@base*1vw);
+    overflow-y: auto; 
+    font-size: (3/@base*1vw);
+    color: #4b5563;
+    font-family: inherit;
+}
+#chatInput::-webkit-scrollbar {
+    width: (1/@base*1vw);
+}
+#chatInput::-webkit-scrollbar-thumb {
+    background-color: rgba(244, 114, 182, 0.3); 
+    border-radius: (1/@base*1vw);
+}
+#chatInput::placeholder {
+    color: #9ca3af;
+}
+
+.ai-send-btn {
+    width: (7/@base*1vw); 
+    height: (7/@base*1vw);
+    border-radius: 50%;
+    background-color: #fbcfe8; 
+    color: #831843; 
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0; 
+}
+
+.ai-send-btn:hover {
+    background-color: #f9a8d4; 
+    transform: scale(1.05);
+}
+.sena-msg {
+    align-self: flex-start;
+    font-size: (4/@base*1vw);
+    margin-left: (20/@base*1vw);  
+    color: #4b5563;
+    font-weight: bold;
+    margin-top: (5/@base*1vw); 
+}
+.user-msg {
+    max-width: 50%;
+    word-wrap: break-word; 
+    overflow-wrap: break-word;
+    word-break: break-all;
+    white-space: pre-wrap;
+    align-self: flex-end;
+    font-size: (4/@base*1vw);
+    margin-right: (20/@base*1vw);
+    border-radius: (3/@base*1vw);
+    padding: (2/@base*1vw) (3/@base*1vw);
+    text-align: center;
+    background: #e0f2fe;
+    margin-top: (5/@base*1vw); 
+}

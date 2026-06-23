@@ -1,0 +1,47 @@
+// out: ../css/
+@import "./variable.less";
+body{
+    font-family:'JetBrains Mono';
+    background-color: @logocolor;
+    display: flex;
+    justify-content: center;
+    margin-top: (42/@base)*1vw;
+}
+.auth-container{
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: (5 / @base * 1vw);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img{
+        display: block;
+        width: (22 / @base * 1vw);
+        height: (22 / @base * 1vw);
+        padding-top: (5/@base * 1vw);
+    }
+}
+.panel { 
+    padding: (0 / @base * 1vw) (10 / @base * 1vw) (10 / @base * 1vw) (10 / @base * 1vw); 
+    box-shadow: 0 (4 / @base * 1vw) (8 / @base * 1vw) rgba(255, 137, 161, 0.3); 
+    width: (57 / @base * 1vw); 
+    text-align: center;
+}
+input { 
+    display: block;
+    width: 80%; 
+    margin: (5 / @base * 1vw) auto; 
+    padding: (2 / @base * 1vw); 
+}
+button { 
+    padding:(2.5 / @base * 1vw) (5 / @base * 1vw); 
+    cursor: pointer; 
+    background:@navcolor; 
+    color: #fff; 
+    border: none; 
+    border-radius: (3 / @base * 1vw); 
+}
+a { 
+    color: blue; 
+    cursor: pointer; 
+    text-decoration: none; 
+}
