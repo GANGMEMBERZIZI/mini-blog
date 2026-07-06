@@ -1,8 +1,8 @@
-interface HitokotoResponse {
+export interface HitokotoResponse {
     uuid: string;
     hitokoto: string;
 }
-async function fetchHitokoto():Promise<void> {
+export async function fetchHitokoto():Promise<void> {
     const hitokoto=document.querySelector<HTMLAnchorElement>("#hitokoto_text");
     if(!hitokoto)
             return;
@@ -18,4 +18,4 @@ async function fetchHitokoto():Promise<void> {
         hitokoto.innerText = "error";
     }
 }
-fetchHitokoto();
+//fetchHitokoto();

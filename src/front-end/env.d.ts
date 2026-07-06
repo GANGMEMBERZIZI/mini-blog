@@ -1,0 +1,1 @@
+declare module '*.css';//声明css合法
