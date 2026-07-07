@@ -74,12 +74,14 @@ export class Sakura{
 
     }
   private createPetal=():void=>{
-    if (this.animId!==null) {
+    if (this.running) {
       setTimeout(() => {
-        this.animId =
-            requestAnimationFrame(
-                this.createPetal
-            );
+        if (this.running) {
+          this.animId =
+              requestAnimationFrame(
+                  this.createPetal
+              );
+        }
     }, this.setting.delay);
     }
     // Name the animations. These have to match the animations in the CSS file.
@@ -161,14 +163,17 @@ export class Sakura{
     this.el.appendChild(petal);
   }
   private animId: number | null = null;
+  private running: boolean = false;
   public start():void{
-    if (this.animId!=null) {
-    throw new Error('Sakura is already running.');      
+    if (this.running) {
+    throw new Error('Sakura is already running.');
   } else {
+    this.running = true;
     this.animId=requestAnimationFrame(this.createPetal);
   }
   }
   public stop(graceful:boolean=false):void{
+    this.running = false;
     if(this.animId!=null){
       cancelAnimationFrame(this.animId);
       this.animId=null;

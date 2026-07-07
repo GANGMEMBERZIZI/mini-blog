@@ -1,4 +1,4 @@
-async function fetchHitokoto() {
+export async function fetchHitokoto() {
     const hitokoto = document.querySelector("#hitokoto_text");
     if (!hitokoto)
         return;
@@ -14,6 +14,5 @@ async function fetchHitokoto() {
         hitokoto.innerText = "error";
     }
 }
-fetchHitokoto();
-export {};
+//fetchHitokoto();
 //# sourceMappingURL=message.js.map

@@ -36,6 +36,9 @@ app.get('/anime', (req, res) => {
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../../../public/login.html'));
 });
+app.get('/passage', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../../public/passage.html'));
+});
 app.get('/chat', (req, res) => {
     res.sendFile(path.join(__dirname, '../../../public/chat.html'));
 });
@@ -43,6 +46,7 @@ app.use(cookieParser());
 app.use('/api/posts', passageRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/about', commentRouter);
+app.use('/api/about', passageRouter);
 app.use('/api/chat', chatRouter);
 app.use('/api/anime', animeRouter);
 app.use('/api/game', gameRouter);

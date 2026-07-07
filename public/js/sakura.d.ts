@@ -22,6 +22,7 @@ export declare class Sakura {
     private elementInViewport;
     private createPetal;
     private animId;
+    private running;
     start(): void;
     stop(graceful?: boolean): void;
 }
