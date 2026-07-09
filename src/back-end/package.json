@@ -19,6 +19,7 @@
     "dotenv": "^16.6.1",
     "express": "^5.2.1",
     "https-proxy-agent": "^9.0.0",
+    "jsdom": "^29.1.1",
     "jsonwebtoken": "^9.0.3",
     "marked": "^18.0.5",
     "node-fetch": "^2.7.0",
@@ -28,7 +29,9 @@
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.10",
+    "@types/dompurify": "^3.0.5",
     "@types/express": "^5.0.6",
+    "@types/jsdom": "^28.0.3",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/pg": "^8.20.0",
     "tsx": "^4.22.4"
