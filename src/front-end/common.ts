@@ -116,6 +116,226 @@ class Footer extends HTMLElement{
     initUptime();
     }
 }
+class LoginAndRegiter extends HTMLElement{
+    constructor(){
+        super();
+    }
+    connectedCallback():void{
+        this.innerHTML=`<div class="auth-container">
+        <img src="./img/123.gif" alt="">
+        <div id="login-panel" class="panel">
+            <h2>登录</h2>
+            <input type="text" id="login-username" placeholder="输入账号">
+            <input type="password" id="login-password" placeholder="输入密码">
+            <button id="btn-login">登 录</button>
+            <p>还没有账号？ <a id="link-to-register">立刻注册</a></p>
+        </div>
 
+        <div id="register-panel" class="panel" style="display: none;">
+            <h2>注册账号</h2>
+            <input type="text" id="register-username" placeholder="创造新的账号">
+            <input type="password" id="register-password" placeholder="设置密码">
+            <button id="btn-register">注 册</button>
+            <p>已有账号？ <a id="link-to-login">返回登录</a></p>
+        </div>
+    </div>`;
+    }
+}
+class mainme extends HTMLElement{
+    constructor(){
+        super();
+    }
+    connectedCallback():void{
+        this.innerHTML=`<div class="mainme">
+        <div class="mysaying">
+            <h2>📃我的自传</h2>
+            <div class="p">zizi,网名取自<a href="https://space.bilibili.com/686127" target="_blank">籽岷</a>,是吟游诗人,思想家,人民教育家,编程爱好者(软硬皆可),二次元爱好者,galgame评论家</div>
+            <ul>
+                <li>● 软件部分主攻领域全栈web开发,对wasm和ai agent也颇有兴趣,曾经写过纯c编译器,喜欢并正在学习TypeScript,Rust,Gleam</li>
+                <li>● 硬件正在学习freertos,底层爱好者,考虑与web结合</li>
+                <li>● galgame玩家,最喜欢<a href="https://bangumi.tv/subject/95202" target="_blank">向日葵的教会与长长的暑假</a>和<a href="https://bangumi.tv/subject/145370" target="_blank">魔女恋爱日记</a></li>
+                <li>● 喜欢看番,最喜欢<a href="https://bangumi.tv/subject/41488" target="_blank">樱花庄的宠物女孩</a>和<a href="https://bangumi.tv/subject/100444" target="_blank">四月是你的谎言</a></li>
+                <li>● 魂系游戏玩家,喜欢坐牢受苦哦呵呵</li>
+                <li>● 性压抑,平常喜欢没事撸点小管</li>
+                <li>● 有可能成为mc开发者,写我的世界客户端,实现vibe pvp (并非黑客合法化!)</li>
+            </ul>
+            <h2 class="email">📫我的联系方式</h2>
+            <ul>
+                <li>● QQ: 2367824807(大号被封了qwq,原因不想再说f**k Zhinese)</li>
+                <li>● BiliBili: <a href="https://space.bilibili.com/397877307" target="_blank">子神</a> UID:397877307</li>
+                <li>● Github: 个人原因暂时私密</li>
+                <li>● Codeberg: 依旧暂时私密</li>
+                <li>● Youtube: <a href="https://www.youtube.com/@Takagi-san1234" target="_blank">子神</a>,不怎么发视频</li>
+                <li>● Twitter: <a href="https://x.com/zSaw_123" target="_blank">子神</a></li>
+                <li>● Telegram: <a href="#">私信我我加你awa</a></li>
+                <li>● 邮箱: cossnb@163.com / lijaylen86@gmail.com</li>
+            </ul>
+            <h2 class="email">📂该站初衷</h2>
+            <div class="p">装逼,没了,喜欢侮辱他人</div>
+        </div>  
+        </div>`;
+    }
+}
+class maintopic extends HTMLElement{
+    constructor(){
+        super();
+    }
+    connectedCallback():void{
+        this.innerHTML=`<div class="maintopic">
+        <div class="title">
+            <h2>我的视频</h2>
+            <div class="box">
+                <a href="https://space.bilibili.com/397877307/upload/video" target="_blank">查看更多</a>
+            </div>
+        </div>
+        <div class="text">
+            <ul>
+                <li>
+                    <a href="https://www.bilibili.com/video/BV1KtdUB9EdY/?vd_source=78e5545f1451f3dc12f1dfd90cbb8d99" target="_blank">
+                    <div class="video">
+                        <img class="package" src="./img/video_img/1.jpg" alt="1">
+                        <video class="mg" src="./video/1.mp4" muted loop></video>
+                    </div>
+                    <div class="info">
+                        <p class="desc">last dance</p>
+                        <div class="data">
+                        <span>🕒 2026-04-21</span>
+                        <span>👁️ 88</span>
+                        <span>💬 3</span>
+                    </div>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.bilibili.com/video/BV1ft421M7mU/?spm_id_from=333.1387.search.video_card.click&vd_source=78e5545f1451f3dc12f1dfd90cbb8d99" target="_blank">
+                    <div class="video">
+                        <img class="package" src="./img/video_img/2.png" alt="2">
+                        <video class="mg" src="./video/2.mp4" muted loop></video>
+                    </div>
+                    <div class="info">
+                        <p class="desc">combos7</p>
+                        <div class="data">
+                        <span>🕒 2024-05-15</span>
+                        <span>👁️ 546</span>
+                        <span>💬 18</span>
+                    </div>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.bilibili.com/video/BV1JC411n7Au/?spm_id_from=333.1387.upload.video_card.click&vd_source=78e5545f1451f3dc12f1dfd90cbb8d99" target="_blank">
+                    <div class="video">
+                        <img class="package" src="./img/video_img/3.png" alt="3">
+                        <video class="mg" src="./video/3.mp4" muted loop></video>
+                    </div>
+                    <div class="info">
+                        <p class="desc">感觉不如zizi</p>
+                        <div class="data">
+                        <span>🕒 2024-04-24</span>
+                        <span>👁️ 408</span>
+                        <span>💬 12</span>
+                    </div>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.bilibili.com/video/BV1gYmAB5EAL/?spm_id_from=333.1387.homepage.video_card.click&vd_source=78e5545f1451f3dc12f1dfd90cbb8d99" target="_blank">
+                    <div class="video">
+                        <img class="package" src="./img/video_img/4.jpg" alt="4">
+                        <video class="mg" src="./video/4.mp4" muted loop></video>
+                    </div>
+                    <div class="info">
+                        <p class="desc">丑陋</p>
+                        <div class="data">
+                        <span>🕒 2025-12-07</span>
+                        <span>👁️ 128</span>
+                        <span>💬 2</span>
+                    </div>
+                    </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="title">
+            <h2>我的项目</h2>
+            <div class="box">
+                <a href="https://github.com/GANGMEMBERZIZI" target="_blank">查看更多</a>
+            </div>
+        </div>
+        <div class="text">
+            <ul>
+                <li>
+                    <a href="https://github.com/GANGMEMBERZIZI/minigrep" target="_blank">
+                    <div class="project">
+                        <h3 class="name">minigrep</h3>
+                        <div class="language">● Rust</div>
+                    </div>
+                    <div class="info2">
+                        <p class="desc2">minigrep 是一个使用 Rust 编写的命令行搜索工具，模仿了经典工具 grep 的核心功能。本项目是基于《The Rust Programming Language》圣经教程实现的练习项目，旨在展示 Rust 在文件 I/O、模块化设计、错误处理以及生命周期管理等方面的特性。</p>
+                        <div class="data2">
+                        <span id="repo-time">🕒 Updated on Jan 11</span>
+                        <span id="repo-stars">☆ 2</span>
+                        <span id="repo-watch">💬 0</span>
+                    </div>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/GANGMEMBERZIZI/learn-tinyhttpd" target="_blank">
+                    <div class="project">
+                        <h3 class="name">learn-tinyhttpd</h3>
+                        <div class="language2">● C</div>
+                    </div>
+                    <div class="info2">
+                        <p class="desc2">这是一个基于C语言实现的轻量级 Web 服务器，作为学习网络编程和 Linux 系统调用的实验项目。</p>
+                        <div class="data2">
+                        <span>🕒 Updated on Mar 20</span>
+                        <span>☆ 1</span>
+                        <span>💬 1</span>
+                    </div>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/GANGMEMBERZIZI/rust1" target="_blank">
+                    <div class="project">
+                        <h3 class="name">rust1</h3>
+                        <div class="language">● Rust</div>
+                    </div>
+                    <div class="info2">
+                        <p class="desc2">本项目是信息论“实验二：信道容量”的 Rust 语言实现。它采用 Blahut-Arimoto 算法，通过迭代计算给定离散无记忆信道 (DMC) 的信道容量和最佳信源概率分布。</p>
+                        <div class="data2">
+                        <span>🕒 Updated on Nov 24, 2025</span>
+                        <span>☆ 1</span>
+                        <span>💬 1</span>
+                    </div>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/GANGMEMBERZIZI/acwj" target="_blank">
+                    <div class="project">
+                        <h3 class="name">acwj</h3>
+                        <div class="language2">● C</div>
+                    </div>
+                    <div class="info2">
+                        <p class="desc2">C语言子集提供自编译器</p>
+                        <div class="data2">
+                        <span>🕒 Updated on Jul 13, 2025</span>
+                        <span>☆ 1</span>
+                        <span>💬 1</span>
+                    </div>
+                    </div>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>`
+    }
+}
+customElements.define('my-maintopic',maintopic);
+customElements.define('my-mainme',mainme);
+customElements.define("my-login-and-register",LoginAndRegiter);
 customElements.define("my-header", Header);
 customElements.define("my-footer", Footer);
