@@ -1,2 +1,13 @@
 .env
+.env.*
+
 node_modules/
+
+.vscode/
+
+dist/
+build/
+
+*.log
+
+Thumbs.db

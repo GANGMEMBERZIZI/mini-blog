@@ -2,8 +2,10 @@ import express from 'express';
 const router = express.Router();
 const UID = '397877307';
 const headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
     "Referer": "https://www.bilibili.com/",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+    "Accept-Language": "zh-CN,zh;q=0.9",
 };
 function htmlData(html) {
     const start = html.indexOf('window.__INITIAL_STATE__');
@@ -25,39 +27,34 @@ function htmlData(html) {
     }
 }
 async function enhanceBangumiTages(bangumi) {
-    let tags = null;
     try {
         const detailURL = `https://api.bilibili.com/pgc/view/web/season?season_id=${bangumi.season_id}`;
         const detailResponse = await fetch(detailURL, {
             headers: headers
         });
         const detailData = await detailResponse.json();
-        if (detailData.code === 0 && detailData.result?.style) {
-            tags = detailData.result.style
-                .map((s) => typeof s === 'string' ? s : (s?.name || String(s)))
+        if (detailData.code === 0) {
+            const styles = detailData.result?.styles ??
+                detailData.result?.style ??
+                [];
+            const tags = styles
+                .map((s) => typeof s === "string"
+                ? s
+                : s.name)
                 .filter(Boolean);
+            bangumi.all_tags =
+                tags.length > 0
+                    ? tags
+                    : [bangumi.season_type_name || "番剧"];
+            return bangumi;
         }
     }
     catch (error) {
+        console.log(error);
     }
-    if (!tags || tags.length === 0) {
-        try {
-            const pageResp = await fetch(`https://www.bilibili.com/bangumi/media/md${bangumi.media_id}`, {
-                headers: headers
-            });
-            const html = await pageResp.text();
-            const state = htmlData(html);
-            if (state) {
-                const info = state.mediaInfo || state.initMedia || {};
-                const fetchedStyles = info.styles || info.style || info.styles_list || info.tags || [];
-                tags = Array.isArray(fetchedStyles)
-                    ? fetchedStyles.map((s) => typeof s === 'string' ? s : (s?.name || String(s))).filter(Boolean)
-                    : (typeof fetchedStyles === 'string' ? fetchedStyles.split(/[\/,，]/).map(s => s.trim()).filter(Boolean) : []);
-            }
-        }
-        catch (error) { }
-    }
-    bangumi.all_tags = (tags && tags.length > 0) ? tags : [bangumi.season_type_name || '番剧'];
+    bangumi.all_tags = [
+        bangumi.season_type_name || "番剧"
+    ];
     return bangumi;
 }
 router.get("/", async (req, res) => {

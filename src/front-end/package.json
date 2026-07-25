@@ -21,9 +21,11 @@
   "homepage": "https://github.com/GANGMEMBERZIZI/mini-blog#readme",
   "dependencies": {
     "cookie-session": "^2.1.1",
+    "dompurify": "^3.4.12",
     "undici": "^7.27.2"
   },
   "devDependencies": {
+    "@types/dompurify": "^3.0.5",
     "vite": "^8.0.16"
   }
 }
