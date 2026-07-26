@@ -1,5 +1,3 @@
-import DOMPurify from "dompurify";
-import {marked} from "marked";
 const container1=document.querySelector<HTMLUListElement>(".text ul");
 export const container=document.querySelector<HTMLDivElement>("#container");
 export const prevBtn=document.querySelector<HTMLButtonElement>(".prev-page");

@@ -47,7 +47,7 @@ app.use(cookieParser());
 app.use('/api/posts',passageRouter);
 app.use('/api/auth',authRouter);
 app.use('/api/about',commentRouter);
-app.use('/api/about',passageRouter);
+app.use('/api/passage',articleRouter);
 app.use('/api/chat',chatRouter);
 app.use('/api/anime',animeRouter);
 app.use('/api/game',gameRouter);

@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/article.css">
+    <link rel="stylesheet" href="./css/passage.css">
     <link rel="stylesheet" href="./css/variable.css">
     <link rel="stylesheet" href="./css/sakura.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -18,7 +20,23 @@
 </head>
 <body>
     <my-header></my-header>
-    
+    <div class="maintopic">
+        <div class="title">
+            <h2>我的文章</h2>
+            <div class="box">
+                <a href="https://space.bilibili.com/397877307/dynamic" target="_blank">查看更多</a>
+            </div>
+        </div>
+    <div class="text">
+            <ul id="post-list">
+            </ul>
+            <div class="pagination-controls">
+        <button class="prev-page">⬅️ 上一页</button>
+        <span class="page-info">第 1 页 / 共 1 页</span>
+        <button class="next-page">下一页 ➡️</button>
+    </div>
+        </div>
+    </div>
     <my-footer></my-footer>
     <meting-js
         server="netease"
@@ -30,6 +48,7 @@
         theme="#dea584">
     </meting-js>
     <script type="module" src="./js/common.js"></script>
+    <script type="module" src="./js/passage.js"></script>
     <script type="module" src="./js/main.js"></script>
     <script type="module" src="./js/sakura.js"></script>
     <script type="module" src="./js/button.js"></script>
