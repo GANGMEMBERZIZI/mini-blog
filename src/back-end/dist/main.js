@@ -12,6 +12,7 @@ const app = express();
 app.use(express.json());
 import cookieParser from 'cookie-parser';
 app.use(express.static(path.join(__dirname, '../../../public')));
+import articleRouter from './article.js';
 import passageRouter from './passage.js';
 import animeRouter from './anime.js';
 import authRouter from './auth.js';
@@ -24,8 +25,11 @@ app.get('/post', (req, res) => {
 app.get('/about', (req, res) => {
     res.sendFile(path.join(__dirname, '../../../public/about.html'));
 });
-app.get('/admin', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../../public/admin.html'));
+app.get('/admin-note', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../../public/admin-note.html'));
+});
+app.get('/admin-passage', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../../public/admin-passage.html'));
 });
 app.get('/game', (req, res) => {
     res.sendFile(path.join(__dirname, '../../../public/game.html'));
@@ -39,6 +43,9 @@ app.get('/login', (req, res) => {
 app.get('/passage', (req, res) => {
     res.sendFile(path.join(__dirname, '../../../public/passage.html'));
 });
+app.get('/passage/:title', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../../public/passage-detail.html'));
+});
 app.get('/chat', (req, res) => {
     res.sendFile(path.join(__dirname, '../../../public/chat.html'));
 });
@@ -46,7 +53,7 @@ app.use(cookieParser());
 app.use('/api/posts', passageRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/about', commentRouter);
-app.use('/api/about', passageRouter);
+app.use('/api/passage', articleRouter);
 app.use('/api/chat', chatRouter);
 app.use('/api/anime', animeRouter);
 app.use('/api/game', gameRouter);

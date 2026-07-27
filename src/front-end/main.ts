@@ -6,7 +6,7 @@ let main=document.querySelector<HTMLDivElement>(".main");
 if(!main){
     throw new Error("不存在main");
 }
-main.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(./img/${random}.png)`;
+main.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/img/${random}.png)`;
 document.addEventListener("DOMContentLoaded",()=>{
   const theme_toggle=document.querySelector<HTMLAnchorElement>("#theme-toggle");
   const theme_icon=document.getElementById("theme-icon");
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   const theme=localStorage.getItem("theme");
   if(theme==="dark"){
     document.body.classList.add("dark-theme");
-    theme_icon.classList.replace(moon,sun);//记录
+    theme_icon.classList.replace(moon,sun);
   }
   theme_toggle.addEventListener("click",(e)=>{
     e.preventDefault();

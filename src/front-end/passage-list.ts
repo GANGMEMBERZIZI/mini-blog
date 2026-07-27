@@ -45,12 +45,12 @@ async function loadPassages(page:number=1){
         const fragment=new DocumentFragment();
         result.data.forEach((article: Passage)=>{
           const li=document.createElement('li');
+          li.className="article";
           const cover=document.createElement('div');
           cover.className='articleCover';
           const img=document.createElement('img');
           img.src=article.cover;
           img.alt=article.title;
-          img.loading="lazy";
           cover.appendChild(img);
           const titlediv=document.createElement('div');
           titlediv.className='articleTitle';
@@ -65,7 +65,9 @@ async function loadPassages(page:number=1){
           const data=document.createElement('div');
           data.className='articleData';
           const time=document.createElement('span');
-          time.innerText=article.time;
+          time.innerHTML = `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> ${new Date(article.time)
+    .toISOString()
+    .slice(0,10)}`;
           data.appendChild(time);
           li.appendChild(cover);
           li.appendChild(titlediv);

@@ -6,7 +6,7 @@ let main = document.querySelector(".main");
 if (!main) {
     throw new Error("不存在main");
 }
-main.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(./img/${random}.png)`;
+main.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/img/${random}.png)`;
 document.addEventListener("DOMContentLoaded", () => {
     const theme_toggle = document.querySelector("#theme-toggle");
     const theme_icon = document.getElementById("theme-icon");

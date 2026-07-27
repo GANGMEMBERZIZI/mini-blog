@@ -39,7 +39,7 @@ class Header extends HTMLElement{
     </div>
     <div class="personal-introduction">
         <div class="pic">
-            <img src="./img/head-removebg-preview.png" alt="">
+            <img src="/img/head-removebg-preview.png" alt="">
         </div>
         <div class="list">
             <ul>
@@ -193,7 +193,7 @@ class maintopic extends HTMLElement{
                 <li>
                     <a href="https://www.bilibili.com/video/BV1KtdUB9EdY/?vd_source=78e5545f1451f3dc12f1dfd90cbb8d99" target="_blank">
                     <div class="video">
-                        <img class="package" src="./img/video_img/1.jpg" alt="1">
+                        <img class="package" src="/img/video_img/1.jpg" alt="1">
                         <video class="mg" src="./video/1.mp4" muted loop></video>
                     </div>
                     <div class="info">

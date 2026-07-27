@@ -1,3 +1,4 @@
+//note back-end
 import express from "express";
 const router = express.Router();
 import { pool } from './chat.js';

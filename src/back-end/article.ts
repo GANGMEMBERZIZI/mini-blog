@@ -39,7 +39,7 @@ router.get('/',async(req,res)=>{
               data:result.rows.map(row=>({
               title:row.title,
               cover:row.cover,
-              time:row.time,
+              time:row.created_at,
               summary:removeMarkdown(row.content).replace(/\s+/g," ").slice(0,50)
     }))
 };

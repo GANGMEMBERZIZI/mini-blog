@@ -25,8 +25,11 @@ app.get('/post',(req,res)=>{
 app.get('/about',(req,res)=>{
     res.sendFile(path.join(__dirname,'../../../public/about.html'));
 });
-app.get('/admin',(req,res)=>{
-    res.sendFile(path.join(__dirname,'../../../public/admin.html'));
+app.get('/admin-note',(req,res)=>{
+    res.sendFile(path.join(__dirname,'../../../public/admin-note.html'));
+});
+app.get('/admin-passage',(req,res)=>{
+    res.sendFile(path.join(__dirname,'../../../public/admin-passage.html'));
 });
 app.get('/game',(req,res)=>{
     res.sendFile(path.join(__dirname,'../../../public/game.html'));
@@ -39,7 +42,10 @@ app.get('/login',(req,res)=>{
 });
 app.get('/passage',(req,res)=>{
     res.sendFile(path.join(__dirname,'../../../public/passage.html'));
-})
+});
+app.get('/passage/:title',(req,res)=>{
+    res.sendFile(path.join(__dirname,'../../../public/passage-detail.html'));
+});
 app.get('/chat',(req,res)=>{
     res.sendFile(path.join(__dirname,'../../../public/chat.html'));
 });
