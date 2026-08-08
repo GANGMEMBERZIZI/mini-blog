@@ -1,9 +1,11 @@
 import express from "express";
+import multer from 'multer';
 import { Request, Response, NextFunction } from 'express';
 const router=express.Router();
 import {OpenAI} from "openai";
 import jwt,{ JwtPayload } from 'jsonwebtoken';
 import {Pool} from "pg";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 export const pool=new Pool({
     host:'localhost',
     port:5432,
@@ -11,6 +13,21 @@ export const pool=new Pool({
     password: process.env.DB_PASSWORD, 
     database: 'postgres'
 });
+const upload=multer({
+    storage: multer.memoryStorage(),
+    limits:{
+        fileSize:20 * 1024 * 1024,
+        files:9
+    }
+});
+const s3Client=new S3Client({
+    region: "auto",
+    endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+    credentials: {
+        accessKeyId: process.env.R2_ACCESS_KEY_ID as string,
+        secretAccessKey: process.env.R2_SECRET_ACCESS_KEY as string,
+    },
+}); 
 declare global{
     namespace Express{
         interface Request{
@@ -48,10 +65,11 @@ export const authenticateToken=(req:Request,res:Response,next:NextFunction)=>{
     });
     }
 };
-router.post("/",authenticateToken,async(req:Request,res:Response)=>{
+router.post("/",authenticateToken,upload.array('files',9),async(req:Request,res:Response)=>{
     try{
         const userMessage=req.body.message;
         const currentUserId=req.user?.id;
+        const files=req.files;
         if(!currentUserId){
             return res.status(401).json({ status: "error", message: "拒绝访问！" });
         }
