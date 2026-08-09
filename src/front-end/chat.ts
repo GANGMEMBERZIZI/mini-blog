@@ -12,6 +12,11 @@ interface history{
      role: string; 
      content: string 
 }
+interface history{
+    role:string,
+    content:string,
+    attachments?:string[]
+}
 async function aichat() {
     try{
         const userMessager=document.querySelector<HTMLTextAreaElement>("#chatInput");
@@ -29,7 +34,6 @@ async function aichat() {
         const ai=document.createElement('p');
         ai.className = 'sena-msg';
         chatbox!.appendChild(ai);
-        // const currentToken = localStorage.getItem('quantum_token');
         const response=await fetch("/api/chat",{
             method:"POST",
             headers:{

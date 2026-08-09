@@ -1,11 +1,13 @@
 import express from "express";
 import multer from 'multer';
-import { Request, Response, NextFunction } from 'express';
+import e, { Request, Response, NextFunction } from 'express';
 const router=express.Router();
 import {OpenAI} from "openai";
 import jwt,{ JwtPayload } from 'jsonwebtoken';
 import {Pool} from "pg";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import path from "path";
+import { buffer } from "node:stream/consumers";
 export const pool=new Pool({
     host:'localhost',
     port:5432,
@@ -61,30 +63,68 @@ export const authenticateToken=(req:Request,res:Response,next:NextFunction)=>{
     catch(error){
          return res.status(403).json({
         status: "error",
-        message: "通行证伪造或已过期"
+        message: "身份认证已过期"
     });
     }
 };
 router.post("/",authenticateToken,upload.array('files',9),async(req:Request,res:Response)=>{
     try{
-        const userMessage=req.body.message;
+        let userMessage=req.body.message||"";
         const currentUserId=req.user?.id;
-        const files=req.files;
+        const files=req.files as Express.Multer.File[];
         if(!currentUserId){
             return res.status(401).json({ status: "error", message: "拒绝访问！" });
         }
-        const query1=`INSERT INTO AIhistory (user_id, role, content) VALUES ($1, 'user', $2)`;
-        await pool.query(query1, [currentUserId, userMessage]);
-        const historyQuery = `SELECT role, content FROM AIhistory WHERE user_id = $1 ORDER BY id ASC`;
+        const filesUrl:string[]=[];
+        let codeContext = "";
+        if(files && files.length > 0){
+            await Promise.all(files.map(async(file)=>{
+                const ext = path.extname(file.originalname).toLowerCase();
+                if (file.mimetype.startsWith('image/')) {
+                    const cloudFileName = `ai/${Date.now()}-${file.originalname}`;
+                    const uploadCommand = new PutObjectCommand({
+                        Bucket: process.env.R2_BUCKET_NAME,
+                        Key: cloudFileName,
+                        Body: file.buffer,
+                        ContentType: file.mimetype
+                    });
+                    await s3Client.send(uploadCommand);
+                    filesUrl.push(`${process.env.R2_PUBLIC_DOMAIN}/${cloudFileName}`);
+                }else if(['.js', '.ts', '.rs', '.c', '.cpp', '.txt', '.json', '.md','.py','.java','.go','.jsx','.tsx','.sql','.yaml','.yml','.toml','.xml','.html','.css','.sh'].includes(ext)){
+                    const fileString = file.buffer.toString('utf-8');
+                    codeContext += `\n[FILE_CONTENT_START: ${file.originalname}]\n${fileString}\n[FILE_CONTENT_END]\n`;
+                }else{
+                    codeContext += `\n[用户上传了不支持解析的文件 ${file.originalname}]\n`;
+                }
+            }));
+        }
+        if (codeContext !== "") {
+            userMessage = `用户上传了以下文件内容作为参考：\n${codeContext}\n\n用户的问题是：\n${userMessage}`;
+        }
+        const query1=`INSERT INTO AIhistory (user_id, role, content,attachments) VALUES ($1,'user',$2,$3)`;
+        await pool.query(query1, [currentUserId, userMessage,filesUrl]);
+        const historyQuery = `SELECT role, content,attachments FROM AIhistory WHERE user_id = $1 ORDER BY id ASC`;
         const historyResult = await pool.query(historyQuery, [currentUserId]);
         const apiMessage: OpenAI.Chat.ChatCompletionMessageParam[] = [
         {role:"system",content:"你是姬野星奏"} 
         ];
         for(let row of historyResult.rows){
-            apiMessage.push({
-                role: row.role === 'sena' ? 'assistant' : 'user',
+            const role = row.role === 'sena' ? 'assistant' : 'user';
+            if(!row.attachments || row.attachments.length === 0){
+                apiMessage.push({
+                role,
                 content: row.content
-            });
+                });
+            }else{
+                const multContent:any[]=[{ type: 'text', text: row.content }];
+                for(let url of row.attachments){
+                    multContent.push({
+                        type: 'image_url',
+                        image_url: { url } 
+                    });
+                }
+                apiMessage.push({role,content: multContent});
+            }
         }
         res.setHeader('Content-Type', 'text/plain; charset=utf-8');
         res.setHeader('Cache-Control','no-cache');
@@ -116,7 +156,7 @@ router.post("/",authenticateToken,upload.array('files',9),async(req:Request,res:
 router.get("/",authenticateToken,async(req,res)=>{
     try{
     const currentUserId=req.user?.id;
-    const historyQuery = `SELECT role, content FROM AIhistory WHERE user_id = $1 ORDER BY id ASC`;
+    const historyQuery = `SELECT role, content,attachments FROM AIhistory WHERE user_id = $1 ORDER BY id ASC`;
     const result = await pool.query(historyQuery, [currentUserId]);
     res.json({
             data: result.rows
