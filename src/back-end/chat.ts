@@ -41,7 +41,7 @@ let _openai: OpenAI | null = null;
 function getOpenAI(): OpenAI {
     if (!_openai) {
         _openai = new OpenAI({
-            baseURL: 'https://api.deepseek.com',
+            baseURL: "https://open.bigmodel.cn/api/paas/v4/",
             apiKey: process.env.API_KEY,
         });
     }
@@ -101,9 +101,8 @@ router.post("/",authenticateToken,upload.array('files',9),async(req:Request,res:
             }));
         }
         if (codeContext !== "") {
-            userMessage = `用户上传了以下文件内容作为参考：\n${codeContext}\n\n用户的问题是：\n${userMessage}`;
+            userMessage = `${codeContext}\n${userMessage}`;
         }
-        console.log(codeContext);
         const query1=`INSERT INTO AIhistory (user_id, role, content,attachments) VALUES ($1,'user',$2,$3)`;
         await pool.query(query1, [currentUserId, userMessage,filesUrl]);
         const historyQuery = `SELECT role, content,attachments FROM AIhistory WHERE user_id = $1 ORDER BY id ASC`;
@@ -134,8 +133,16 @@ router.post("/",authenticateToken,upload.array('files',9),async(req:Request,res:
         res.setHeader('Connection','keep-alive');
         const stream = await getOpenAI().chat.completions.create({
         messages: apiMessage,
-        model: "deepseek-v4-pro",
-    stream:true
+        model: "glm-4.6v-flash",
+        stream:true,
+        tools: [
+                {
+                    type: "web_search",
+                    web_search: {
+                        enable: true 
+                    }
+                }as any
+            ]
   });
   let fullSenaMessage="";
   for await (const chunk of stream){

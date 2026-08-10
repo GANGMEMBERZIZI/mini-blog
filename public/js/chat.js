@@ -42,7 +42,7 @@ async function aichat() {
                 }
                 else {
                     const badge = document.createElement('div');
-                    badge.style.cssText = 'padding:4px 8px; background:#2d2d2d; border-radius:4px; font-size:12px;';
+                    badge.style.cssText = 'padding:4px 8px; background:#2d2d2d; color:#fff; border-radius:4px; font-size:12px;';
                     badge.innerText = `📄 ${file?.name}`;
                     fileContainer.appendChild(badge);
                 }
@@ -51,9 +51,6 @@ async function aichat() {
         }
         chatbox.appendChild(p);
         chatbox.scrollTop = chatbox.scrollHeight;
-        userMessager.value = "";
-        if (fileInput)
-            fileInput.value = "";
         const ai = document.createElement('div');
         ai.className = 'sena-msg';
         chatbox.appendChild(ai);
@@ -64,7 +61,9 @@ async function aichat() {
                 formData.append("files", files[i]);
             }
         }
-        console.log(formData);
+        userMessager.value = "";
+        if (fileInput)
+            fileInput.value = "";
         const response = await fetch("/api/chat", {
             method: "POST",
             credentials: 'include',

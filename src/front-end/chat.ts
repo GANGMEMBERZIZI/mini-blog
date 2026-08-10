@@ -9,10 +9,6 @@ interface historyData {
     data:history[];
 }
 interface history{
-     role: string; 
-     content: string 
-}
-interface history{
     role:string,
     content:string,
     attachments?:string[]
@@ -65,8 +61,6 @@ async function aichat() {
         }
         chatbox!.appendChild(p);
         chatbox!.scrollTop = chatbox!.scrollHeight;
-        userMessager!.value="";
-        if (fileInput) fileInput.value = "";
         const ai=document.createElement('div');
         ai.className = 'sena-msg';
         chatbox!.appendChild(ai);
@@ -77,7 +71,8 @@ async function aichat() {
                 formData.append("files", files[i]!);
             }
         }
-        console.log(formData)
+        userMessager!.value="";
+        if (fileInput) fileInput.value = "";
         const response=await fetch("/api/chat",{
             method:"POST",
             credentials: 'include',
