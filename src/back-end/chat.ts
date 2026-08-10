@@ -1,6 +1,6 @@
 import express from "express";
 import multer from 'multer';
-import e, { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from 'express';
 const router=express.Router();
 import {OpenAI} from "openai";
 import jwt,{ JwtPayload } from 'jsonwebtoken';
@@ -72,6 +72,8 @@ router.post("/",authenticateToken,upload.array('files',9),async(req:Request,res:
         let userMessage=req.body.message||"";
         const currentUserId=req.user?.id;
         const files=req.files as Express.Multer.File[];
+        console.log(req.files);
+        console.log(req.body);
         if(!currentUserId){
             return res.status(401).json({ status: "error", message: "拒绝访问！" });
         }
@@ -90,7 +92,7 @@ router.post("/",authenticateToken,upload.array('files',9),async(req:Request,res:
                     });
                     await s3Client.send(uploadCommand);
                     filesUrl.push(`${process.env.R2_PUBLIC_DOMAIN}/${cloudFileName}`);
-                }else if(['.js', '.ts', '.rs', '.c', '.cpp', '.txt', '.json', '.md','.py','.java','.go','.jsx','.tsx','.sql','.yaml','.yml','.toml','.xml','.html','.css','.sh'].includes(ext)){
+                }else if(['.js', '.ts', '.rs', '.c', '.cpp', '.txt', '.json', '.md','.py','.java','.go','.jsx','.tsx','.sql','.yaml','.yml','.toml','.xml','.html','.css','.sh','.hs'].includes(ext)){
                     const fileString = file.buffer.toString('utf-8');
                     codeContext += `\n[FILE_CONTENT_START: ${file.originalname}]\n${fileString}\n[FILE_CONTENT_END]\n`;
                 }else{
@@ -101,6 +103,7 @@ router.post("/",authenticateToken,upload.array('files',9),async(req:Request,res:
         if (codeContext !== "") {
             userMessage = `用户上传了以下文件内容作为参考：\n${codeContext}\n\n用户的问题是：\n${userMessage}`;
         }
+        console.log(codeContext);
         const query1=`INSERT INTO AIhistory (user_id, role, content,attachments) VALUES ($1,'user',$2,$3)`;
         await pool.query(query1, [currentUserId, userMessage,filesUrl]);
         const historyQuery = `SELECT role, content,attachments FROM AIhistory WHERE user_id = $1 ORDER BY id ASC`;

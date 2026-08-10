@@ -5,14 +5,12 @@ async function loadPassage() {
         const title = decodeURIComponent(location.pathname.split("/")[2]);
         const response = await fetch(`/api/passage/${encodeURIComponent(title)}`);
         const data = await response.json();
-        // 更新封面图
         let main = document.querySelector(".main");
         if (main) {
             main.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${data.cover})`;
             main.style.backgroundSize = "cover";
             main.style.backgroundPosition = "center";
         }
-        // 渲染文章内容
         const maintopic = document.querySelector(".maintopic");
         const HTML = await marked.parse(data.content);
         const cleanHTML = DOMPurify.sanitize(HTML);

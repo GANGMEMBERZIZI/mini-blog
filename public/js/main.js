@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const theme = localStorage.getItem("theme");
     if (theme === "dark") {
         document.body.classList.add("dark-theme");
-        theme_icon.classList.replace(moon, sun); //记录
+        theme_icon.classList.replace(moon, sun);
     }
     theme_toggle.addEventListener("click", (e) => {
         e.preventDefault();

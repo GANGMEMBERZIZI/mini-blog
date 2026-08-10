@@ -7,7 +7,6 @@ const submitBtn = document.querySelector("#submit");
 const updateBtn = document.querySelector("#update");
 const deleteBtn = document.querySelector("#delete");
 let currentTitle = "";
-// 获取文章列表
 async function loadArticles() {
     const res = await fetch("/api/passage");
     const data = await res.json();
@@ -21,7 +20,6 @@ async function loadArticles() {
         list.appendChild(li);
     });
 }
-// 获取单篇文章
 async function loadArticle(title) {
     const res = await fetch(`/api/passage/${encodeURIComponent(title)}`);
     const data = await res.json();
@@ -30,7 +28,6 @@ async function loadArticle(title) {
     coverInput.value = data.cover;
     contentInput.value = data.content;
 }
-// 新增
 submitBtn.onclick = async () => {
     const body = {
         title: titleInput.value,
@@ -49,7 +46,6 @@ submitBtn.onclick = async () => {
     alert(data.message);
     loadArticles();
 };
-// 修改
 updateBtn.onclick = async () => {
     if (!currentTitle) {
         alert("请选择文章");
@@ -72,7 +68,6 @@ updateBtn.onclick = async () => {
     alert(data.message);
     loadArticles();
 };
-// 删除
 deleteBtn.onclick = async () => {
     if (!currentTitle) {
         alert("请选择文章");
@@ -83,9 +78,7 @@ deleteBtn.onclick = async () => {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-            password: passwordInput.value
-        })
+        body: JSON.stringify({ password: passwordInput.value })
     });
     const data = await res.json();
     alert(data.message);

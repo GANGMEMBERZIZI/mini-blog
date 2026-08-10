@@ -27,6 +27,10 @@
     <div id="chatbox">
         </div>
     <div class="input-area">
+        <input type="file" id="fileInput" multiple style="display: none;">
+        <button id="uploadBtn" onclick="document.getElementById('fileInput').click()" style="background: none; border: none; cursor: pointer; font-size: 20px; padding-right: 10px;">
+            📎
+        </button>
         <textarea id="chatInput" placeholder="和星奏说点什么吧... (Shift + Enter 换行)" rows="1"></textarea>
         <button id="sendBtn" class="ai-send-btn">
         </button>
