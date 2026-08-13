@@ -72,7 +72,6 @@ router.post('/login',async(req,res)=>{
     res.json({ 
         status: "success", 
         message: "登录成功，量子通行证已下发！",
-        //token: token 
     });
 }
 catch(error){
