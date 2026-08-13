@@ -1,10 +1,3 @@
-import {isLogged} from "./comment.js";
-const sendBtn=document.querySelector<HTMLButtonElement>("#sendBtn");
-const iconArrow = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>`;
-const iconStop = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1.5"/></svg>`;
-sendBtn!.innerHTML=iconArrow;
-let isGenerating=false;
-let currentControl: AbortController | null = null;
 interface historyData {
     data:history[];
 }
@@ -13,6 +6,12 @@ interface history{
     content:string,
     attachments?:string[]
 }
+const sendBtn=document.querySelector<HTMLButtonElement>("#sendBtn");
+const iconArrow = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>`;
+const iconStop = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1.5"/></svg>`;
+sendBtn!.innerHTML=iconArrow;
+let isGenerating=false;
+let currentControl: AbortController | null = null;
 function parseContent(text: string): string {
     let safeText = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     safeText = safeText.replace(

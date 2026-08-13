@@ -1,33 +1,4 @@
-const container1=document.querySelector<HTMLUListElement>(".text ul");
-export const container=document.querySelector<HTMLDivElement>("#container");
-export const prevBtn=document.querySelector<HTMLButtonElement>(".prev-page");
-export const nextBtn=document.querySelector<HTMLButtonElement>(".next-page");
-export const pageinfo=document.querySelector<HTMLSpanElement>(".page-info");
-export function updatePaginationUI(params: {
-  currentPage: number;
-  totalPage: number;
-  pageinfo: HTMLSpanElement | null;
-  prevBtn: HTMLButtonElement | null;
-  nextBtn: HTMLButtonElement | null;}) {
-    const { currentPage, totalPage, pageinfo, prevBtn, nextBtn } = params;
-    if (pageinfo) {
-    pageinfo.innerText = `第 ${currentPage} 页 / 共 ${totalPage} 页`;
-  }
-
-  if (prevBtn) {
-    const disabled = currentPage <= 1;
-    prevBtn.disabled = disabled;
-    prevBtn.style.opacity = disabled ? "0.8" : "1";
-  }
-
-  if (nextBtn) {
-    const disabled = currentPage >= totalPage;
-    nextBtn.disabled = disabled;
-    nextBtn.style.opacity = disabled ? "0.8" : "1";
-  }
-}
-let currentPage=1;
-let totalPage=1;
+import {updatePaginationUI} from "./common.js";
 interface article_data{
     currentPage:number;
     totalPages:number;
@@ -37,6 +8,12 @@ interface article_data{
 interface article{
     content:string;
 }
+const container1=document.querySelector<HTMLUListElement>(".text ul");
+const prevBtn=document.querySelector<HTMLButtonElement>(".prev-page");
+const nextBtn=document.querySelector<HTMLButtonElement>(".next-page");
+const pageinfo=document.querySelector<HTMLSpanElement>(".page-info");
+let currentPage=1;
+let totalPage=1;
 async function loadArticleList(page:number=1){
     try{
         const response=await fetch(`/api/posts?page=${page}&limit=4`);

@@ -1,6 +1,67 @@
-import {fetchHitokoto} from "./message.js";
-import {initUptime} from "./time.js";
 import {Sakura} from "./sakura.js";
+interface HitokotoResponse {
+    uuid: string;
+    hitokoto: string;
+}
+//saying
+async function fetchHitokoto():Promise<void> {
+    const hitokoto=document.querySelector<HTMLAnchorElement>("#hitokoto_text");
+    if(!hitokoto)
+            return;
+    try{
+        const response=await fetch("https://v1.hitokoto.cn/?c=d");
+        const data:HitokotoResponse=await response.json();
+        hitokoto.href=`https://hitokoto.cn/?uuid=${data.uuid}`;
+        hitokoto.innerText = data.hitokoto;
+    }
+    catch(error){
+        console.error(error);
+        hitokoto.removeAttribute("href");
+        hitokoto.innerText = "error";
+    }
+}
+//time
+const format=(time:number):string=>String(time).padStart(2,"0");
+const start=new Date("2024-05-01T00:00:00");
+function initUptime(): void{
+    const time=document.querySelector<HTMLDivElement>("#uptime_screen");
+    if(!time)
+        return ;
+function startup():void{
+    const totalseconds=Math.floor((Date.now()-start.getTime())/1000);
+    const days= Math.floor(totalseconds / (3600 * 24));
+    const hours= Math.floor((totalseconds % (3600 * 24)) / 3600);
+    const minutes=Math.floor((totalseconds % 3600)/60);
+    const seconds=totalseconds % 60;
+    const text:string=`${days} 天 ${format(hours)} 小时 ${format(minutes)} 分钟 ${format(seconds)} 秒`;
+    time!.innerText=text;
+}
+setInterval(startup,1000);
+startup();
+}
+export function updatePaginationUI(params: {
+  currentPage: number;
+  totalPage: number;
+  pageinfo: HTMLSpanElement | null;
+  prevBtn: HTMLButtonElement | null;
+  nextBtn: HTMLButtonElement | null;}) {
+    const { currentPage, totalPage, pageinfo, prevBtn, nextBtn } = params;
+    if (pageinfo) {
+    pageinfo.innerText = `第 ${currentPage} 页 / 共 ${totalPage} 页`;
+  }
+
+  if (prevBtn) {
+    const disabled = currentPage <= 1;
+    prevBtn.disabled = disabled;
+    prevBtn.style.opacity = disabled ? "0.8" : "1";
+  }
+
+  if (nextBtn) {
+    const disabled = currentPage >= totalPage;
+    nextBtn.disabled = disabled;
+    nextBtn.style.opacity = disabled ? "0.8" : "1";
+  }
+}
 class Header extends HTMLElement{
     constructor(){
         super();

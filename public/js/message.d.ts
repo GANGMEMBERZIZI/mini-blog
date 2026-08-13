@@ -1,6 +1,2 @@
-export interface HitokotoResponse {
-    uuid: string;
-    hitokoto: string;
-}
-export declare function fetchHitokoto(): Promise<void>;
+export {};
 //# sourceMappingURL=message.d.ts.map

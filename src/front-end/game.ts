@@ -1,15 +1,16 @@
-export const container=document.querySelector<HTMLDivElement>("#container");
-export const prevBtn=document.querySelector<HTMLButtonElement>(".prev-page");
-export const nextBtn=document.querySelector<HTMLButtonElement>(".next-page");
-export const pageinfo=document.querySelector<HTMLSpanElement>(".page-info");
-if(!container||!prevBtn||!nextBtn||!pageinfo)
-    throw new Error("空的");
+import {updatePaginationUI} from "./common.js"; 
 interface steamGame{
     appid: number;
     name: string;
     playtime_forever: number;
     img_icon_url: string;
 }
+const container=document.querySelector<HTMLDivElement>("#container");
+const prevBtn=document.querySelector<HTMLButtonElement>(".prev-page");
+const nextBtn=document.querySelector<HTMLButtonElement>(".next-page");
+const pageinfo=document.querySelector<HTMLSpanElement>(".page-info");
+if(!container||!prevBtn||!nextBtn||!pageinfo)
+    throw new Error("空的");
 let currentPage=1;
 async function loadGameList(page:number=1){
     try{
@@ -55,36 +56,12 @@ async function loadGameList(page:number=1){
         console.error("出现错误:", error);
     }
 }
-export function updatePaginationUI(params: {
-  currentPage: number;
-  totalPage: number;
-  pageinfo: HTMLSpanElement | null;
-  prevBtn: HTMLButtonElement | null;
-  nextBtn: HTMLButtonElement | null;}) {
-    const { currentPage, totalPage, pageinfo, prevBtn, nextBtn } = params;
-    if (pageinfo) {
-    pageinfo.innerText = `第 ${currentPage} 页 / 共 ${totalPage} 页`;
-  }
-
-  if (prevBtn) {
-    const disabled = currentPage <= 1;
-    prevBtn.disabled = disabled;
-    prevBtn.style.opacity = disabled ? "0.8" : "1";
-  }
-
-  if (nextBtn) {
-    const disabled = currentPage >= totalPage;
-    nextBtn.disabled = disabled;
-    nextBtn.style.opacity = disabled ? "0.8" : "1";
-  }
-}
 prevBtn!.onclick = function(){
     if (currentPage > 1) {
         currentPage--;
         loadGameList(currentPage); 
     }
 };
-
 nextBtn!.onclick = function(){
     if (!nextBtn!.disabled) {
         currentPage++;

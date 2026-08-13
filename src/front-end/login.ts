@@ -1,4 +1,4 @@
-import type {crud_data} from "./admin.js";//type interface 用于编译时类型检查 运行消失 所以加type
+import type {crud_data} from "./admin-note.js";//type interface 用于编译时类型检查 运行消失 所以加type
 interface request{
     username:string;
     password:string;

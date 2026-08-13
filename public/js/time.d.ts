@@ -1,2 +1,2 @@
-export declare function initUptime(): void;
+export {};
 //# sourceMappingURL=time.d.ts.map

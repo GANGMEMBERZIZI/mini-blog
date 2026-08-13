@@ -1,4 +1,4 @@
-import type{crud_data} from "./admin.js";
+import type{crud_data} from "./admin-note.js";
 const sub=document.querySelector("#subcomment");
 interface commentsData{
     currentPage:number;

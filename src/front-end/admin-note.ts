@@ -1,3 +1,19 @@
+//note
+let currentEditingTitle = "";
+interface title_data{
+    currentPage:number;
+    totalPages:number;
+    totalArticles:number;
+    data:string[];
+}
+interface title_content{
+    title:string;
+    content:string;
+}
+export interface crud_data{
+    status:string;
+    message:string;
+}
 const submitBtn=document.querySelector<HTMLButtonElement>("#submit-btn");
 const listBox=document.querySelector<HTMLDivElement>("#list-box");
 const viewerTitle = document.querySelector<HTMLInputElement>("#viewer-title");
@@ -7,21 +23,6 @@ const updateBtn = document.querySelector<HTMLButtonElement>("#update-btn");
 const deleteBtn = document.querySelector<HTMLButtonElement>("#delete-btn");
 if(!submitBtn||!listBox||!viewerTitle||!viewerContent||!viewerActions||!updateBtn||!deleteBtn){
     throw new Error("出现为null的错误");
-}
-let currentEditingTitle = "";
-interface title_data{
-    currentPage:number;
-    totalPages:number;
-    totalArticles:number;
-    data:string[];
-};
-interface title_content{
-    title:string;
-    content:string;
-}
-export interface crud_data{
-    status:string;
-    message:string;
 }
 async function loadArticleList():Promise<void>{
     try{

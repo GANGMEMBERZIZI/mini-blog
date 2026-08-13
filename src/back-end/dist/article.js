@@ -1,7 +1,7 @@
 //passage back-end
 import express from "express";
 const router = express.Router();
-import { pool } from './chat.js';
+import { pool } from './main.js';
 import removeMarkdown from "remove-markdown";
 router.post('/', async (req, res) => {
     try {

@@ -7,25 +7,6 @@ const headers = {
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
     "Accept-Language": "zh-CN,zh;q=0.9",
 };
-function htmlData(html) {
-    const start = html.indexOf('window.__INITIAL_STATE__');
-    if (start === -1)
-        return;
-    const braceStart = html.indexOf('{', start);
-    let depth = 0, i = braceStart;
-    for (; i < html.length; i++) {
-        if (html[i] === '{')
-            depth++;
-        else if (html[i] === '}' && --depth === 0)
-            break;
-    }
-    try {
-        return JSON.parse(html.substring(braceStart, i + 1));
-    }
-    catch (error) {
-        return null;
-    }
-}
 async function enhanceBangumiTages(bangumi) {
     try {
         const detailURL = `https://api.bilibili.com/pgc/view/web/season?season_id=${bangumi.season_id}`;

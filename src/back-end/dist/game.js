@@ -13,7 +13,6 @@ router.get('/', async (req, res) => {
         if (PROXY_URL) {
             fetchOptions.dispatcher = new ProxyAgent(PROXY_URL);
         }
-        //console.log("我的Steam Key是：", process.env.STEAM_API_KEY);
         const steamResponse = await fetch(URL, fetchOptions);
         if (!steamResponse.ok) {
             console.error("Steam API 返回错误状态:", steamResponse.status);

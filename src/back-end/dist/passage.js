@@ -1,7 +1,7 @@
 //note back-end
 import express from "express";
 const router = express.Router();
-import { pool } from './chat.js';
+import { pool } from './main.js';
 router.post('/', async (req, res) => {
     try {
         const { title, content, password } = req.body;

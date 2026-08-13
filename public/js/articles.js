@@ -1,24 +1,8 @@
+import { updatePaginationUI } from "./common.js";
 const container1 = document.querySelector(".text ul");
-export const container = document.querySelector("#container");
-export const prevBtn = document.querySelector(".prev-page");
-export const nextBtn = document.querySelector(".next-page");
-export const pageinfo = document.querySelector(".page-info");
-export function updatePaginationUI(params) {
-    const { currentPage, totalPage, pageinfo, prevBtn, nextBtn } = params;
-    if (pageinfo) {
-        pageinfo.innerText = `第 ${currentPage} 页 / 共 ${totalPage} 页`;
-    }
-    if (prevBtn) {
-        const disabled = currentPage <= 1;
-        prevBtn.disabled = disabled;
-        prevBtn.style.opacity = disabled ? "0.8" : "1";
-    }
-    if (nextBtn) {
-        const disabled = currentPage >= totalPage;
-        nextBtn.disabled = disabled;
-        nextBtn.style.opacity = disabled ? "0.8" : "1";
-    }
-}
+const prevBtn = document.querySelector(".prev-page");
+const nextBtn = document.querySelector(".next-page");
+const pageinfo = document.querySelector(".page-info");
 let currentPage = 1;
 let totalPage = 1;
 async function loadArticleList(page = 1) {
