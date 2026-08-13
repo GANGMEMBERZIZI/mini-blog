@@ -1,7 +1,7 @@
 import express from 'express';
 const router=express.Router();
-import {pool} from './chat.js';
-import { authenticateToken } from './chat.js';
+import {pool} from './main.js';
+import { authenticateToken } from './auth.js';
 router.post('/',authenticateToken,async(req,res)=>{
     try{
         const{content}=req.body;

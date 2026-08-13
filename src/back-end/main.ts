@@ -10,8 +10,16 @@ const port=process.env.PORT;
 import express from 'express';
 const app=express();
 app.use(express.json());
+import {Pool} from "pg";
 import cookieParser from 'cookie-parser';
 app.use(express.static(path.join(__dirname,'../../../public')));
+export const pool=new Pool({
+    host:'localhost',
+    port:5432,
+    user: 'postgres',
+    password: process.env.DB_PASSWORD, 
+    database: 'postgres'
+});
 import articleRouter from './article.js';
 import passageRouter from './passage.js';
 import animeRouter from './anime.js';

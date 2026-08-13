@@ -1,7 +1,7 @@
 //note back-end
 import express from "express";
 const router=express.Router();
-import{pool} from './chat.js';
+import{pool} from './main.js';
 interface data{
     currentPage:number,
     totalPages:number,

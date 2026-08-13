@@ -1,20 +1,12 @@
 import express from "express";
-import multer from 'multer';
-import { Request, Response, NextFunction } from 'express';
 const router=express.Router();
-import {OpenAI} from "openai";
-import jwt,{ JwtPayload } from 'jsonwebtoken';
-import {Pool} from "pg";
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import path from "path";
-import { buffer } from "node:stream/consumers";
-export const pool=new Pool({
-    host:'localhost',
-    port:5432,
-    user: 'postgres',
-    password: process.env.DB_PASSWORD, 
-    database: 'postgres'
-});
+import {pool} from './main.js';
+import multer from 'multer';
+import { JwtPayload } from 'jsonwebtoken';
+import {OpenAI} from "openai";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { authenticateToken } from './auth.js';
 const upload=multer({
     storage: multer.memoryStorage(),
     limits:{
@@ -47,27 +39,7 @@ function getOpenAI(): OpenAI {
     }
     return _openai;
 }
-export const authenticateToken=(req:Request,res:Response,next:NextFunction)=>{
-    const token=req.cookies.token;
-    if(!token){
-        return res.status(401).json({ status: "error", message: "请先登录！" });
-    }
-    const secret = process.env.JWT_SECRET;
-    if(!secret)
-        return res.status(500).json({ status: "error", message: "服务器配置错误" });
-    try{
-        const decode=jwt.verify(token,secret) as JwtPayload;
-        req.user = decode; 
-        next();
-    }
-    catch(error){
-         return res.status(403).json({
-        status: "error",
-        message: "身份认证已过期"
-    });
-    }
-};
-router.post("/",authenticateToken,upload.array('files',9),async(req:Request,res:Response)=>{
+router.post("/",authenticateToken,upload.array('files',9),async(req,res)=>{
     try{
         let userMessage=req.body.message||"";
         const currentUserId=req.user?.id;

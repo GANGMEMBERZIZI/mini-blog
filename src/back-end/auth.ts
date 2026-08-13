@@ -1,9 +1,29 @@
 import express from "express";
 const router=express.Router();
+import { Request, Response, NextFunction } from 'express';
+import jwt,{ JwtPayload } from 'jsonwebtoken';
 import bcrypt from "bcryptjs";
-import jwt from 'jsonwebtoken';
-import {pool} from './chat.js';
-import { authenticateToken } from './chat.js';
+import {pool} from './main.js';
+export const authenticateToken=(req:Request,res:Response,next:NextFunction)=>{
+    const token=req.cookies.token;
+    if(!token){
+        return res.status(401).json({ status: "error", message: "请先登录！" });
+    }
+    const secret = process.env.JWT_SECRET;
+    if(!secret)
+        return res.status(500).json({ status: "error", message: "服务器配置错误" });
+    try{
+        const decode=jwt.verify(token,secret) as JwtPayload;
+        req.user = decode; 
+        next();
+    }
+    catch(error){
+         return res.status(403).json({
+        status: "error",
+        message: "身份认证已过期"
+    });
+    }
+};
 router.post('/register',async(req,res)=>{
     try{
         const {username,password}=req.body;

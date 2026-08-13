@@ -22,22 +22,6 @@ interface Bangumi {
     all_tags?: string[];
     [key: string]: any; 
 }
-function htmlData(html:string){
-    const start=html.indexOf('window.__INITIAL_STATE__');
-    if(start===-1) return ;
-        const braceStart=html.indexOf('{',start);
-        let depth=0,i=braceStart;
-        for(;i<html.length;i++){
-        if(html[i]==='{')depth++;
-        else if(html[i]==='}'&&--depth===0)break;
-        } 
-    try{
-        return JSON.parse(html.substring(braceStart,i+1));
-    }
-    catch(error){
-        return null;
-    }
-}
 async function enhanceBangumiTages(bangumi:Bangumi){
     try{
         const detailURL =
