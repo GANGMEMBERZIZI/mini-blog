@@ -34,8 +34,7 @@ router.post('/register',async(req,res)=>{
         if(checkUser.rows.length>0){
             return res.status(409).json({ status: "error", message: "该用户已存在" });
         }
-        const salt=await bcrypt.genSalt(10);
-        const hashedPassword=await bcrypt.hash(password,salt);
+        const hashedPassword=await bcrypt.hash(password,10);
         const query='INSERT INTO users (username,password_hash) VALUES ($1,$2)';
         await pool.query(query,[username,hashedPassword]);
         res.json({ status: "success", message: "注册成功！" });
@@ -47,6 +46,9 @@ router.post('/register',async(req,res)=>{
 router.post('/login',async(req,res)=>{
     try{
     const{username,password}=req.body;
+    if(!username||!password){
+            return res.status(400).json({ status: "error", message: "账号和密码绝对不能为空！" });
+    }
     const result=await pool.query('SELECT * FROM users WHERE username = $1',[username]);
     if(result.rows.length===0){
         return res.status(401).json({status:"error",message:"该用户不存在"});
@@ -67,6 +69,7 @@ router.post('/login',async(req,res)=>{
     res.cookie('token',token,{
         httpOnly:true,
         secure:false,
+        sameSite:'lax',
         maxAge:7*24*60*60*1000
     });
     res.json({ 
@@ -75,8 +78,31 @@ router.post('/login',async(req,res)=>{
     });
 }
 catch(error){
-     res.status(500).json({ status: "error", message: "登录通道物理崩溃" });
+     res.status(500).json({ status: "error", message: "登录错误" });
 }
+});
+router.put('/change',async(req,res)=>{
+    try{
+        const {username,oldpassword,newpassword}=req.body;
+        if(!username||!newpassword||!oldpassword){
+            return res.status(400).json({ status: "error", message: "账号和密码绝对不能为空！" });
+        }
+        const result=await pool.query('SELECT * FROM users WHERE username = $1',[username]);
+        if(result.rows.length===0){
+            return res.status(401).json({status:"error",message:"该用户不存在"});
+        }
+        const isMatch=await bcrypt.compare(oldpassword,result.rows[0].password_hash);
+        if(!isMatch){ 
+        return res.status(401).json({ status: "error", message: "旧密码错误了" });
+        }
+        const hashedPassword=await bcrypt.hash(newpassword,10);
+        const query='UPDATE users SET password_hash=$1 WHERE username=$2';
+        await pool.query(query,[hashedPassword,username]);
+        res.json({ status: "success", message: "修改成功" });
+    }
+    catch(error){
+        res.status(500).json({ status: "error", message: "修改错误" });
+    }
 });
 router.get('/me',authenticateToken,(req,res)=>{
     res.json({id: req.user?.id,username:req.user?.username,role:req.user?.role });

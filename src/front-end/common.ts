@@ -189,7 +189,8 @@ class LoginAndRegiter extends HTMLElement{
             <input type="text" id="login-username" placeholder="输入账号">
             <input type="password" id="login-password" placeholder="输入密码">
             <button id="btn-login">登 录</button>
-            <p>还没有账号？ <a id="link-to-register">立刻注册</a></p>
+            <p>还没有账号？ <a class="link-to-register">立刻注册</a></p>
+            <p><a class="link-to-change">修改密码</a><a class="link-to-ignore">忘记密码?</a></p>
         </div>
 
         <div id="register-panel" class="panel" style="display: none;">
@@ -197,7 +198,16 @@ class LoginAndRegiter extends HTMLElement{
             <input type="text" id="register-username" placeholder="创造新的账号">
             <input type="password" id="register-password" placeholder="设置密码">
             <button id="btn-register">注 册</button>
-            <p>已有账号？ <a id="link-to-login">返回登录</a></p>
+            <p>已有账号？ <a class="link-to-login">返回登录</a></p>
+        </div>
+
+        <div id="change-panel" class="panel" style="display: none;">
+            <h2>修改密码</h2>
+            <input type="text" id="change-username" placeholder="请输入用户名">
+            <input type="password" id="change-oldpassword" placeholder="输入旧密码">
+            <input type="password" id="change-newpassword" placeholder="输入新密码">
+            <button id="btn-change">修 改</button>
+            <p>已有账号？ <a class="link-to-login">返回登录</a></p>
         </div>
     </div>`;
     }
